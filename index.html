@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator Fisika</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Kalkulator Fisika</h1>
+
+        <label for="formula">Pilih Rumus:</label>
+        <select id="formula" onchange="updateForm()">
+            <option value="speed">Kecepatan (v = s / t)</option>
+            <option value="force">Gaya (F = m × a)</option>
+            <option value="kinetic">Energi Kinetik (Ek = ½ × m × v²)</option>
+        </select>
+
+        <div id="inputs"></div>
+
+        <button onclick="calculate()">Hitung</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
