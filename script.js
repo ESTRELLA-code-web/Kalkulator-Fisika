@@ -1,70 +1,52 @@
-function updateForm() {
-    const formula = document.getElementById("formula").value;
-    const inputsDiv = document.getElementById("inputs");
-    inputsDiv.innerHTML = "";
-
-    switch (formula) {
-        case "speed":
-            inputsDiv.innerHTML = `
-                <label for="distance">Jarak (meter):</label>
-                <input type="number" id="distance">
-
-                <label for="time">Waktu (detik):</label>
-                <input type="number" id="time">
-            `;
-            break;
-        case "force":
-            inputsDiv.innerHTML = `
-                <label for="mass">Massa (kg):</label>
-                <input type="number" id="mass">
-
-                <label for="acceleration">Percepatan (m/s²):</label>
-                <input type="number" id="acceleration">
-            `;
-            break;
-        case "kinetic":
-            inputsDiv.innerHTML = `
-                <label for="massKinetic">Massa (kg):</label>
-                <input type="number" id="massKinetic">
-
-                <label for="velocity">Kecepatan (m/s):</label>
-                <input type="number" id="velocity">
-            `;
-            break;
-    }
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-function calculate() {
-    const formula = document.getElementById("formula").value;
-    let resultText = "";
-
-    if (formula === "speed") {
-        const s = parseFloat(document.getElementById("distance").value);
-        const t = parseFloat(document.getElementById("time").value);
-        if (t === 0) {
-            resultText = "Waktu tidak boleh nol.";
-        } else {
-            const v = s / t;
-            resultText = `Kecepatan: ${v.toFixed(2)} m/s`;
-        }
-    }
-
-    else if (formula === "force") {
-        const m = parseFloat(document.getElementById("mass").value);
-        const a = parseFloat(document.getElementById("acceleration").value);
-        const F = m * a;
-        resultText = `Gaya: ${F.toFixed(2)} N`;
-    }
-
-    else if (formula === "kinetic") {
-        const m = parseFloat(document.getElementById("massKinetic").value);
-        const v = parseFloat(document.getElementById("velocity").value);
-        const Ek = 0.5 * m * v * v;
-        resultText = `Energi Kinetik: ${Ek.toFixed(2)} joule`;
-    }
-
-    document.getElementById("result").innerText = resultText;
+.container {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
-// Tampilkan form pertama kali
-updateForm();
+label {
+    margin-top: 10px;
+    display: block;
+    text-align: left;
+}
+
+select, input, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
