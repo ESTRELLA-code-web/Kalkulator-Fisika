@@ -1,39 +1,132 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    padding: 20px;
+function updateForm() {
+    const formula = document.getElementById("formula").value;
+    const inputsDiv = document.getElementById("inputs");
+    inputsDiv.innerHTML = "";
+
+    switch (formula) {
+        case "speed":
+            inputsDiv.innerHTML = `
+                <label for="distance">Jarak (meter):</label>
+                <input type="number" id="distance">
+
+                <label for="time">Waktu (detik):</label>
+                <input type="number" id="time">
+            `;
+            break;
+
+        case "force":
+            inputsDiv.innerHTML = `
+                <label for="mass">Massa (kg):</label>
+                <input type="number" id="mass">
+
+                <label for="acceleration">Percepatan (m/s²):</label>
+                <input type="number" id="acceleration">
+            `;
+            break;
+
+        case "kinetic":
+            inputsDiv.innerHTML = `
+                <label for="massKinetic">Massa (kg):</label>
+                <input type="number" id="massKinetic">
+
+                <label for="velocity">Kecepatan (m/s):</label>
+                <input type="number" id="velocity">
+            `;
+            break;
+
+        case "momentum":
+            inputsDiv.innerHTML = `
+                <label for="massMomentum">Massa (kg):</label>
+                <input type="number" id="massMomentum">
+
+                <label for="velocityMomentum">Kecepatan (m/s):</label>
+                <input type="number" id="velocityMomentum">
+            `;
+            break;
+
+        case "pressure":
+            inputsDiv.innerHTML = `
+                <label for="forcePressure">Gaya (N):</label>
+                <input type="number" id="forcePressure">
+
+                <label for="area">Luas (m²):</label>
+                <input type="number" id="area">
+            `;
+            break;
+
+        case "work":
+            inputsDiv.innerHTML = `
+                <label for="forceWork">Gaya (N):</label>
+                <input type="number" id="forceWork">
+
+                <label for="distanceWork">Jarak (meter):</label>
+                <input type="number" id="distanceWork">
+            `;
+            break;
+
+        case "power":
+            inputsDiv.innerHTML = `
+                <label for="workPower">Usaha (joule):</label>
+                <input type="number" id="workPower">
+
+                <label for="timePower">Waktu (detik):</label>
+                <input type="number" id="timePower">
+            `;
+            break;
+    }
 }
 
-.container {
-    max-width: 500px;
-    background: white;
-    margin: auto;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+function calculate() {
+    const formula = document.getElementById("formula").value;
+    let resultText = "";
+
+    switch (formula) {
+        case "speed":
+            const s = parseFloat(document.getElementById("distance").value);
+            const t = parseFloat(document.getElementById("time").value);
+            resultText = t === 0 ? "Waktu tidak boleh nol." : `Kecepatan: ${(s / t).toFixed(2)} m/s`;
+            break;
+
+        case "force":
+            const m = parseFloat(document.getElementById("mass").value);
+            const a = parseFloat(document.getElementById("acceleration").value);
+            resultText = `Gaya: ${(m * a).toFixed(2)} N`;
+            break;
+
+        case "kinetic":
+            const mk = parseFloat(document.getElementById("massKinetic").value);
+            const vk = parseFloat(document.getElementById("velocity").value);
+            resultText = `Energi Kinetik: ${(0.5 * mk * vk * vk).toFixed(2)} joule`;
+            break;
+
+        case "momentum":
+            const mm = parseFloat(document.getElementById("massMomentum").value);
+            const vm = parseFloat(document.getElementById("velocityMomentum").value);
+            resultText = `Momentum: ${(mm * vm).toFixed(2)} kg·m/s`;
+            break;
+
+        case "pressure":
+            const f = parseFloat(document.getElementById("forcePressure").value);
+            const A = parseFloat(document.getElementById("area").value);
+            resultText = A === 0 ? "Luas tidak boleh nol." : `Tekanan: ${(f / A).toFixed(2)} Pa`;
+            break;
+
+        case "work":
+            const fw = parseFloat(document.getElementById("forceWork").value);
+            const sw = parseFloat(document.getElementById("distanceWork").value);
+            resultText = `Usaha: ${(fw * sw).toFixed(2)} joule`;
+            break;
+
+        case "power":
+            const W = parseFloat(document.getElementById("workPower").value);
+            const tp = parseFloat(document.getElementById("timePower").value);
+            resultText = tp === 0 ? "Waktu tidak boleh nol." : `Daya: ${(W / tp).toFixed(2)} watt`;
+            break;
+    }
+
+    document.getElementById("result").innerText = resultText;
 }
 
-label, select, input, button {
-    display: block;
-    width: 100%;
-    margin-bottom: 15px;
-}
+// Tampilkan form pertama kali
+updateForm();
 
-button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #0056b3;
-}
-
-#result {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-}
