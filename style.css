@@ -1,40 +1,48 @@
+/* Atur body agar isi ditengah secara vertikal dan horizontal */
 body {
     font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    height: 100vh;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
 }
 
+/* Container utama */
 .container {
-    width: 100%;
+    width: 90%;
     max-width: 500px;
     background: white;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     text-align: center;
 }
 
+/* Label dan input form */
 label {
-    margin-top: 10px;
     display: block;
     text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
-select, input, button {
+input, select, button {
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
     margin-bottom: 15px;
     font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
+/* Tombol */
 button {
-    background: #007bff;
+    background-color: #007bff;
     color: white;
     border: none;
     cursor: pointer;
@@ -42,11 +50,13 @@ button {
 }
 
 button:hover {
-    background: #0056b3;
+    background-color: #0056b3;
 }
 
+/* Hasil */
 #result {
     margin-top: 20px;
     font-size: 18px;
     font-weight: bold;
+    color: #333;
 }
